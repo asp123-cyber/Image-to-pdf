@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image-to-PDF Converter | Modern & Efficient</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <header class="header">
+        <h1>📸 Image to PDF Converter</h1>
+        <p>Convert your images to a high-quality, optimized PDF effortlessly.</p>
+    </header>
+
+    <main class="container">
+        <section class="converter-box">
+            
+            <div class="step-card upload-area">
+                <h2>1. Upload Images</h2>
+                <input type="file" id="image-upload" accept="image/jpeg, image/png, image/webp" multiple hidden>
+                <label for="image-upload" class="btn btn-primary">
+                    Select or Drag & Drop Images
+                </label>
+                <p class="file-tip">Supports JPG, PNG, WEBP. Select up to 20 images.</p>
+            </div>
+
+            <div class="step-card preview-area hidden" id="preview-container">
+                <h2>2. Review & Reorder</h2>
+                <div class="image-list" id="image-list">
+                    <p class="empty-state">No images selected yet.</p>
+                </div>
+                <button class="btn btn-secondary clear-btn" id="clear-images">Clear All Images</button>
+            </div>
+
+            <div class="step-card settings-area hidden" id="settings-container">
+                <h2>3. PDF Settings & Convert</h2>
+                
+                <div class="setting-group">
+                    <label for="orientation-select">Orientation:</label>
+                    <select id="orientation-select">
+                        <option value="portrait">Vertical (Portrait)</option>
+                        <option value="landscape">Horizontal (Landscape)</option>
+                        <option value="auto">Auto-detect (Recommended)</option>
+                    </select>
+                    <p class="setting-tip">Auto-detect will try to match the image orientation to minimize margins.</p>
+                </div>
+
+                <div class="setting-group">
+                    <label for="compression-range">Quality/Compression:</label>
+                    <input type="range" id="compression-range" min="0.1" max="1.0" step="0.05" value="0.8">
+                    <span id="compression-value">80%</span>
+                    <p class="setting-tip">Lower values mean smaller file size (MB) but lower image quality. We target 10-20MB for 10-20 pages.</p>
+                </div>
+
+                <button class="btn btn-convert" id="convert-button" disabled>
+                    Generate PDF
+                </button>
+                
+                <div class="conversion-status hidden" id="conversion-status">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <p id="status-text">Processing images...</p>
+                </div>
+            </div>
+            
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Image-to-PDF Tool | Efficient Conversion</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+</body>
+</html>

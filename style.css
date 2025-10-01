@@ -1,0 +1,422 @@
+/* * --------------------------------------------------
+ * 1. Base Styles and Variables
+ * --------------------------------------------------
+ */
+:root {
+    /* Color Palette */
+    --primary-color: #007bff; /* Vibrant Blue for actions */
+    --primary-hover: #0056b3;
+    --secondary-color: #6c757d; /* Grey for secondary elements */
+    --background-color: #f8f9fa; /* Light Grey background */
+    --surface-color: #ffffff; /* White for card surfaces */
+    --border-color: #e9ecef; /* Subtle border color */
+    --shadow-color: rgba(0, 0, 0, 0.08); /* Light shadow */
+    --success-color: #28a745;
+    --error-color: #dc3545;
+
+    /* Typography */
+    --font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --heading-font-weight: 600;
+    
+    /* Spacing */
+    --padding-sm: 10px;
+    --padding-md: 20px;
+    --padding-lg: 30px;
+    
+    /* Border Radius */
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: #343a40; /* Dark text for readability */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* * --------------------------------------------------
+ * 2. Layout and Structure
+ * --------------------------------------------------
+ */
+.container {
+    width: 95%;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: var(--padding-md);
+    flex-grow: 1; /* Allows main content to fill space */
+}
+
+/* Header Styling */
+.header {
+    background-color: var(--surface-color);
+    padding: var(--padding-lg) 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-weight: var(--heading-font-weight);
+}
+
+.header p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: var(--padding-md);
+    background-color: #e9ecef;
+    color: #495057;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Main Converter Box */
+.converter-box {
+    display: grid;
+    gap: var(--padding-lg);
+    grid-template-columns: repeat(3, 1fr); /* Default to 3 columns for desktop */
+}
+
+/* * --------------------------------------------------
+ * 3. Step Cards and Interface Elements
+ * --------------------------------------------------
+ */
+.step-card {
+    background-color: var(--surface-color);
+    padding: var(--padding-lg);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.step-card:hover {
+    transform: translateY(-2px);
+}
+
+.step-card h2 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: var(--padding-md);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    font-weight: var(--heading-font-weight);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* * --------------------------------------------------
+ * 4. Button Styles
+ * --------------------------------------------------
+ */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-top: var(--padding-md);
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-convert {
+    background-color: var(--success-color);
+    color: white;
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    width: 100%;
+    margin-top: var(--padding-md);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+.btn-convert:hover:not(:disabled) {
+    background-color: #1e7e34;
+    transform: scale(1.02);
+}
+
+.btn-convert:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* * --------------------------------------------------
+ * 5. Upload Area Specific Styles
+ * --------------------------------------------------
+ */
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 250px;
+    border: 2px dashed var(--border-color);
+    transition: border-color 0.3s;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color);
+}
+
+.upload-area .btn-primary {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.file-tip {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+
+/* * --------------------------------------------------
+ * 6. Preview and Reorder Area (Drag-and-Drop)
+ * --------------------------------------------------
+ */
+.image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 100px;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: #f4f6f9;
+}
+
+.empty-state {
+    width: 100%;
+    text-align: center;
+    color: var(--secondary-color);
+    padding: 20px;
+    font-style: italic;
+}
+
+/* Individual Image Thumbnail (for SortableJS) */
+.image-item {
+    position: relative;
+    width: 80px; /* Fixed size for clean thumbnails */
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid var(--border-color);
+}
+
+.image-item:hover {
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the container cleanly */
+}
+
+/* Class added by SortableJS when dragging */
+.sortable-ghost {
+    opacity: 0.5;
+    background-color: var(--primary-color);
+}
+
+.remove-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn:hover {
+    opacity: 1;
+    background: #c82333;
+}
+
+
+/* * --------------------------------------------------
+ * 7. Settings and Status Area
+ * --------------------------------------------------
+ */
+.setting-group {
+    margin-bottom: var(--padding-md);
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.setting-group:last-of-type {
+    border-bottom: none;
+}
+
+.setting-group label {
+    display: block;
+    font-weight: var(--heading-font-weight);
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+#orientation-select, #compression-range {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+#compression-range {
+    padding: 0; /* Remove range padding */
+    height: 25px;
+    
+    /* ADD THESE LINES */
+    -webkit-appearance: none; /* For Chrome, Safari, Edge */
+    -moz-appearance: none;    /* For Firefox */
+    appearance: none;         /* Standard property (Future proof) */
+    
+    background: #ced4da;
+}
+
+#compression-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#compression-value {
+    display: inline-block;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-left: 10px;
+}
+
+.setting-tip {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Conversion Status */
+.conversion-status {
+    margin-top: var(--padding-md);
+    text-align: center;
+}
+
+.progress-bar-container {
+    background-color: var(--border-color);
+    border-radius: 50px;
+    height: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%; /* Controlled by JS */
+    background-color: var(--primary-color);
+    transition: width 0.4s ease-in-out;
+    border-radius: 50px 0 0 50px;
+}
+
+#status-text {
+    font-size: 0.95rem;
+    color: var(--primary-hover);
+    font-weight: 500;
+}
+
+
+/* * --------------------------------------------------
+ * 8. Responsive Design (Mobile and Tablet)
+ * --------------------------------------------------
+ */
+@media (max-width: 992px) {
+    /* Tablet layout: Stack two cards, then the third */
+    .converter-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .settings-area {
+        grid-column: 1 / -1; /* Make settings span full width */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile layout: Stack all cards vertically */
+    .converter-box {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: var(--padding-sm);
+    }
+    
+    .step-card {
+        padding: var(--padding-md);
+    }
+}
