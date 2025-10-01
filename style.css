@@ -1,30 +1,29 @@
 /* * --------------------------------------------------
- * 1. Base Styles and Variables
+ * 1. Futuristic Base Styles and Variables
  * --------------------------------------------------
  */
 :root {
     /* Color Palette */
-    --primary-color: #007bff; /* Vibrant Blue for actions */
-    --primary-hover: #0056b3;
-    --secondary-color: #6c757d; /* Grey for secondary elements */
-    --background-color: #f8f9fa; /* Light Grey background */
-    --surface-color: #ffffff; /* White for card surfaces */
-    --border-color: #e9ecef; /* Subtle border color */
-    --shadow-color: rgba(0, 0, 0, 0.08); /* Light shadow */
-    --success-color: #28a745;
-    --error-color: #dc3545;
-
+    --color-dark-bg: #10151f; /* Deepest background */
+    --color-surface: #1a2233; /* Card background */
+    --color-glow-primary: #00e0ff; /* Electric Cyan/Blue glow */
+    --color-glow-secondary: #aa00ff; /* Electric Purple glow */
+    --color-text-main: #e0f7fa; /* Light text for readability */
+    --color-text-muted: #95a5a6; /* Muted grey for tips */
+    --color-border-dark: #34495e; /* Subtle border */
+    
     /* Typography */
     --font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --heading-font-weight: 600;
+    --heading-font-weight: 700;
     
-    /* Spacing */
-    --padding-sm: 10px;
+    /* Effects */
+    --shadow-glow: 0 0 10px var(--color-glow-primary);
+    --shadow-inset: inset 0 0 5px rgba(0, 0, 0, 0.5);
+    
+    /* Spacing and Radius */
     --padding-md: 20px;
     --padding-lg: 30px;
-    
-    /* Border Radius */
-    --radius: 8px;
+    --radius: 6px;
 }
 
 * {
@@ -35,14 +34,16 @@
 
 body {
     font-family: var(--font-family);
-    background-color: var(--background-color);
-    color: #343a40; /* Dark text for readability */
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-main);
     line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* Subtle background cosmic effect */
+    background-image: radial-gradient(circle at 50% 50%, rgba(0, 200, 255, 0.05) 0%, transparent 80%), 
+                      radial-gradient(circle at 20% 80%, rgba(170, 0, 255, 0.05) 0%, transparent 70%);
 }
-
 
 /* * --------------------------------------------------
  * 2. Layout and Structure
@@ -50,257 +51,226 @@ body {
  */
 .container {
     width: 95%;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 40px auto;
-    padding: var(--padding-md);
-    flex-grow: 1; /* Allows main content to fill space */
+    flex-grow: 1;
 }
 
-/* Header Styling */
+/* Header Styling (Sleek Banner) */
 .header {
-    background-color: var(--surface-color);
-    padding: var(--padding-lg) 0;
+    background-color: var(--color-surface);
+    padding: var(--padding-md) 0;
     text-align: center;
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 2px 4px var(--shadow-color);
+    border-bottom: 2px solid var(--color-border-dark);
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.2); /* Header glow */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    color: var(--color-glow-primary);
+    margin-right: 10px;
+    /* Custom style to look like the icon in the image */
+    text-shadow: 0 0 8px var(--color-glow-primary);
 }
 
 .header h1 {
-    font-size: 2.2rem;
-    color: var(--primary-color);
-    margin-bottom: 5px;
+    font-size: 1.8rem;
+    color: var(--color-text-main);
     font-weight: var(--heading-font-weight);
+    letter-spacing: 2px;
 }
 
 .header p {
-    color: var(--secondary-color);
-    font-size: 1.1rem;
+    color: var(--color-glow-primary);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 /* Footer Styling */
 .footer {
     text-align: center;
     padding: var(--padding-md);
-    background-color: #e9ecef;
-    color: #495057;
-    font-size: 0.9rem;
-    border-top: 1px solid var(--border-color);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--color-border-dark);
 }
 
-/* Main Converter Box */
+/* Main Converter Box (The Three-Column Grid) */
 .converter-box {
     display: grid;
     gap: var(--padding-lg);
-    grid-template-columns: repeat(3, 1fr); /* Default to 3 columns for desktop */
+    grid-template-columns: repeat(3, 1fr);
+    padding-top: var(--padding-lg);
 }
 
-/* * --------------------------------------------------
- * 3. Step Cards and Interface Elements
- * --------------------------------------------------
- */
+/* Step Card (The Glowing Boxes) */
 .step-card {
-    background-color: var(--surface-color);
+    background-color: var(--color-surface);
     padding: var(--padding-lg);
     border-radius: var(--radius);
-    box-shadow: 0 4px 12px var(--shadow-color);
-    transition: transform 0.3s ease;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-border-dark);
+    /* Subtle initial glow */
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.1); 
+    transition: all 0.3s ease-in-out;
 }
 
 .step-card:hover {
+    /* Brighter glow on hover */
+    box-shadow: 0 0 15px var(--color-glow-primary);
     transform: translateY(-2px);
 }
 
 .step-card h2 {
-    color: var(--primary-color);
-    font-size: 1.4rem;
+    color: var(--color-glow-primary);
+    font-size: 1.2rem;
     margin-bottom: var(--padding-md);
-    border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border-dark);
     font-weight: var(--heading-font-weight);
+    letter-spacing: 1px;
 }
-
-.hidden {
-    display: none !important;
-}
-
 
 /* * --------------------------------------------------
- * 4. Button Styles
+ * 3. Column 1: Upload Area
  * --------------------------------------------------
  */
-.btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    display: inline-block;
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-.btn-secondary {
-    background-color: var(--secondary-color);
-    color: white;
-    margin-top: var(--padding-md);
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-.btn-convert {
-    background-color: var(--success-color);
-    color: white;
-    font-size: 1.1rem;
-    padding: 15px 30px;
-    width: 100%;
-    margin-top: var(--padding-md);
-    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
-}
-
-.btn-convert:hover:not(:disabled) {
-    background-color: #1e7e34;
-    transform: scale(1.02);
-}
-
-.btn-convert:disabled {
-    background-color: #adb5bd;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-
-/* * --------------------------------------------------
- * 5. Upload Area Specific Styles
- * --------------------------------------------------
- */
-.upload-area {
+.upload-dropzone {
+    height: 180px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    min-height: 250px;
-    border: 2px dashed var(--border-color);
-    transition: border-color 0.3s;
+    border: 3px dashed var(--color-glow-secondary);
+    border-radius: var(--radius);
+    background-color: #2a3347;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(170, 0, 255, 0.4);
+    cursor: pointer;
 }
 
-.upload-area:hover {
-    border-color: var(--primary-color);
+.upload-dropzone:hover {
+    border-color: var(--color-glow-primary);
+    background-color: #313c54;
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
 }
 
-.upload-area .btn-primary {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+.dropzone-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: var(--padding-md);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    color: var(--color-glow-primary);
+    margin-bottom: 10px;
+    display: block;
+    line-height: 1;
+    transform: rotate(180deg); /* Icon points up */
 }
 
 .file-tip {
-    color: var(--secondary-color);
-    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-top: var(--padding-md);
+    line-height: 1.5;
 }
 
-
 /* * --------------------------------------------------
- * 6. Preview and Reorder Area (Drag-and-Drop)
+ * 4. Column 2: Preview and Reorder Area
  * --------------------------------------------------
  */
 .image-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    min-height: 100px;
+    min-height: 230px;
     padding: 5px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    background-color: #f4f6f9;
 }
 
 .empty-state {
-    width: 100%;
+    grid-column: 1 / -1;
     text-align: center;
-    color: var(--secondary-color);
-    padding: 20px;
+    color: var(--color-text-muted);
+    padding: 30px 0;
     font-style: italic;
+    font-size: 0.9rem;
 }
 
-/* Individual Image Thumbnail (for SortableJS) */
+.thumbnail-placeholder {
+    /* Matching the design's empty boxes */
+    width: 100%;
+    height: 70px;
+    border: 1px solid var(--color-border-dark);
+    border-radius: 4px;
+    background-color: #2a3347;
+    box-shadow: var(--shadow-inset);
+}
+
+/* Individual Image Thumbnail */
 .image-item {
     position: relative;
-    width: 80px; /* Fixed size for clean thumbnails */
-    height: 80px;
+    width: 100%;
+    height: 70px;
     border-radius: 4px;
     overflow: hidden;
     cursor: grab;
     transition: transform 0.2s, box-shadow 0.2s;
-    border: 2px solid var(--border-color);
+    border: 2px solid var(--color-glow-primary);
+    background-color: black;
 }
 
 .image-item:hover {
-    box-shadow: 0 0 0 2px var(--primary-color);
+    box-shadow: 0 0 10px var(--color-glow-primary);
 }
 
 .image-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image fills the container cleanly */
+    object-fit: cover;
 }
 
-/* Class added by SortableJS when dragging */
-.sortable-ghost {
-    opacity: 0.5;
-    background-color: var(--primary-color);
+.btn-clear {
+    background-color: transparent;
+    border: 1px solid var(--color-text-muted);
+    color: var(--color-text-muted);
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    display: block;
+    width: 100%;
+    margin-top: var(--padding-md);
+    transition: all 0.3s;
 }
 
-.remove-btn {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background: var(--error-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 12px;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 10;
-    opacity: 0.8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.remove-btn:hover {
-    opacity: 1;
-    background: #c82333;
+.btn-clear:hover {
+    border-color: var(--color-glow-primary);
+    color: var(--color-glow-primary);
+    box-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
 }
 
 
 /* * --------------------------------------------------
- * 7. Settings and Status Area
+ * 5. Column 3: Settings and Conversion
  * --------------------------------------------------
  */
 .setting-group {
     margin-bottom: var(--padding-md);
     padding-bottom: 10px;
-    border-bottom: 1px dashed var(--border-color);
+    border-bottom: 1px dashed var(--color-border-dark);
 }
 
 .setting-group:last-of-type {
@@ -309,114 +279,202 @@ body {
 
 .setting-group label {
     display: block;
-    font-weight: var(--heading-font-weight);
+    font-weight: 500;
     margin-bottom: 8px;
-    color: #495057;
+    color: var(--color-text-main);
 }
 
-#orientation-select, #compression-range {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
+/* --- Orientation Toggle Switch --- */
+.toggle-switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #2a3347;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.toggle-label {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.3s;
+    flex-grow: 1;
+    text-align: center;
+    font-weight: 600;
+}
+
+.toggle-label.active {
+    color: var(--color-glow-primary);
+    text-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
+}
+
+.custom-toggle {
+    width: 50px;
+    height: 20px;
+    background: #34495e;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: auto;
+}
+
+.custom-toggle.active {
+    background: var(--color-glow-primary);
+    box-shadow: 0 0 8px rgba(0, 224, 255, 0.7);
+}
+
+.slider-button {
+    width: 18px;
+    height: 18px;
+    background: var(--color-text-main);
+    border-radius: 50%;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.custom-toggle.active .slider-button {
+    transform: translateX(30px);
+    background: var(--color-surface);
+}
+
+
+/* --- Compression Range --- */
+.compression-group {
+    margin-top: 20px;
+}
+
+.compression-display {
+    font-weight: bold;
+    color: var(--color-glow-primary);
+    font-size: 1.1rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 #compression-range {
-    padding: 0; /* Remove range padding */
-    height: 25px;
-    
-    /* ADD THESE LINES */
-    -webkit-appearance: none; /* For Chrome, Safari, Edge */
-    -moz-appearance: none;    /* For Firefox */
-    appearance: none;         /* Standard property (Future proof) */
-    
-    background: #ced4da;
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: var(--color-border-dark);
+    border-radius: 5px;
+    outline: none;
+    transition: opacity 0.2s;
 }
 
 #compression-range::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 18px;
+    appearance: none;
     width: 18px;
+    height: 18px;
     border-radius: 50%;
-    background: var(--primary-color);
+    background: var(--color-glow-primary);
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.8);
+    border: 3px solid var(--color-surface);
 }
 
-#compression-value {
-    display: inline-block;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-left: 10px;
+#compression-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-glow-primary);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.8);
+    border: 3px solid var(--color-surface);
 }
 
-.setting-tip {
-    font-size: 0.85rem;
-    color: var(--secondary-color);
-    margin-top: 5px;
-    font-style: italic;
+/* --- Convert Button --- */
+.btn-convert {
+    background: linear-gradient(90deg, #aa00ff, #00e0ff); /* Purple to Cyan gradient */
+    color: var(--color-dark-bg);
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    width: 100%;
+    margin-top: var(--padding-md);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: var(--heading-font-weight);
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(170, 0, 255, 0.5);
+    transition: all 0.3s ease;
 }
 
-/* Conversion Status */
+.btn-convert:hover:not(:disabled) {
+    box-shadow: 0 0 30px var(--color-glow-primary), 0 0 10px #aa00ff;
+    transform: scale(1.01);
+}
+
+.btn-convert:disabled {
+    background: var(--color-border-dark);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- Conversion Status --- */
 .conversion-status {
     margin-top: var(--padding-md);
     text-align: center;
 }
 
+#status-text {
+    font-size: 0.9rem;
+    color: var(--color-glow-primary);
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
 .progress-bar-container {
-    background-color: var(--border-color);
-    border-radius: 50px;
-    height: 20px;
-    margin-bottom: 10px;
+    background-color: #34495e;
+    border-radius: 5px;
+    height: 8px;
     overflow: hidden;
 }
 
 .progress-bar {
     height: 100%;
-    width: 0%; /* Controlled by JS */
-    background-color: var(--primary-color);
+    width: 0%; 
+    background: linear-gradient(90deg, #aa00ff, #00e0ff);
     transition: width 0.4s ease-in-out;
-    border-radius: 50px 0 0 50px;
 }
 
-#status-text {
-    font-size: 0.95rem;
-    color: var(--primary-hover);
-    font-weight: 500;
+/* Spinner (matching the conversion status indicator) */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-glow-primary);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+    margin-left: 5px;
 }
 
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
 
 /* * --------------------------------------------------
- * 8. Responsive Design (Mobile and Tablet)
+ * 6. Responsive Design
  * --------------------------------------------------
  */
-@media (max-width: 992px) {
-    /* Tablet layout: Stack two cards, then the third */
-    .converter-box {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .settings-area {
-        grid-column: 1 / -1; /* Make settings span full width */
-    }
-}
-
-@media (max-width: 768px) {
-    /* Mobile layout: Stack all cards vertically */
+@media (max-width: 1024px) {
     .converter-box {
         grid-template-columns: 1fr;
-    }
-
-    .header h1 {
-        font-size: 1.8rem;
-    }
-
-    .container {
-        margin: 20px auto;
-        padding: var(--padding-sm);
-    }
-    
-    .step-card {
-        padding: var(--padding-md);
     }
 }
