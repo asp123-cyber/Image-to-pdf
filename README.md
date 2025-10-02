@@ -86,5 +86,6 @@ Open a Pull Request.
 Distributed under the MIT License. See LICENSE for more information.
 
 📞 Contact
-Ashish Patel GitHub Username - [asp123-cyber]
+ashishpatel64520@gmail.com
+GitHub Username - [asp123-cyber]
 Project Link: [https://github.com/asp123-cyber/image-to-pdf]
