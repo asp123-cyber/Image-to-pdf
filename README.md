@@ -57,7 +57,7 @@ Clone the repository:
 
 Bash
 
-git clone https://github.com/asp123-cyber/quantumflow-pdf.git
+git clone https://github.com/asp123-cyber/image-to-pdf.git
 cd quantumflow-pdf
 Open index.html: Simply open the index.html file in your preferred web browser. All assets (CSS, JS) are linked locally or via CDN.
 
@@ -87,4 +87,4 @@ Distributed under the MIT License. See LICENSE for more information.
 
 📞 Contact
 Ashish Patel GitHub Username - [asp123-cyber]
-Project Link: [https://github.com/asp123-cyber/quantumflow-pdf]
+Project Link: [https://github.com/asp123-cyber/image-to-pdf]
